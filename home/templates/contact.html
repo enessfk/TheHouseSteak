@@ -1,0 +1,89 @@
+    {% extends "homebase.html" %}
+
+    {% load static %}
+
+    {% block title %}Contact-{{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+    {% endblock %}
+
+
+    {% block content %}
+         <div id="content">
+
+        <!-- Page Title -->
+        <div class="page-title bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 push-lg-4">
+                        <h1 class="mb-0">Contact Us</h1>
+                        <h4 class="text-muted mb-0">&ensp; The House Steak </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section -->
+        <section class="section">
+
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 push-lg-1 col-md-6" style="margin-top: -100px">
+                        <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>CONTACT FORM</h4>
+
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+
+                         <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg"><span>SUBMIT</span></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-5 push-lg-2 col-md-6">
+                        <h4 class="mb-0">{{setting.title}} - {{ setting.company }}</h4> <br>
+                        <span class="text-muted">{{setting.address}}</span>
+                        <div><br>
+                                {{ setting.contact | safe }}
+                        </div>
+                        <hr class="hr-md">
+                        <div class="row">
+                            <div class="col-sm-6 mb-3 mb-sm-1">
+                                <h6 class="mb-1 text-muted">Phone:</h6>
+                                {{setting.phone}}
+                            </div>
+                            <div class="col-sm-6">
+                                <h6 class="mb-1 text-muted">E-mail:</h6>
+                                <a href="#">{{setting.smtpemail}}</a>
+                            </div>
+                        </div>
+                        <hr class="hr-md">
+                        <h6 class="mb-3 text-muted">Follow Us!</h6>
+                        <a href="#" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="icon icon-social icon-circle icon-sm icon-google"><i class="fa fa-google"></i></a>
+                        <a href="#" class="icon icon-social icon-circle icon-sm icon-twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="fa fa-youtube"></i></a>
+                        <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>
+                        <img class="h-350 shadow" style="margin-top: 30px" src="{% static 'assets/img/map.jpg' %}" alt="">
+                    </div>
+
+                    <div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+
+

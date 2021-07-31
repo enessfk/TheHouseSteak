@@ -1,0 +1,124 @@
+// SASS Configuration File
+
+// Fonts
+// -----------------------------------------
+
+$font-primary: 'Helvetica Neue', 'Raleway', sans-serif !default;
+$font-secondary: 'Oswald', sans-serif !default;
+
+
+// Colors
+// -----------------------------------------
+
+$color-primary: #1e88e6 !default;
+$color-secondary: #25282a;
+$color-light: #f3f4f4;
+$color-dark: #282b2e;
+
+$color-global: #383c40;
+$color-muted: #a4a7a9; 
+$color-muted-light: rgba(255,255,255,0.5);  
+
+$color-red: #e15757;
+$color-blue: #56aee5;
+$color-orange: #ec9744;
+$color-red: #e15757;
+$color-green: #4aa36b;
+$color-gold: #ebd072;
+$color-medium: #bbc4c6;
+
+// Colors - Social 
+$color-facebook: #213553;
+$color-twitter: #3aa8db;
+$color-google: #d04f3e;
+$color-behance: #1882ff;
+$color-dribbble: #e95aae;
+$color-flickr: #f9429c;
+$color-instagram: #4f86ac;
+$color-linkedin: #008bc2;
+$color-pinterest: #cb1f24;
+$color-skype: #00bef4;
+$color-slack: #44ba97;
+$color-tumblr: #435971;
+$color-vimeo: #0bc4ef;
+$color-vine: #00be9b;
+$color-youtube: #ed4533;
+
+// Colors - Lines
+$color-line: darken(desaturate(adjust-hue($color-light, 14.2857), 12.9870), 7.4510);
+$color-line-light: rgba(255,255,255,0.15);
+
+// Other
+// -----------------------------------------
+
+@mixin transition-primary() {
+	@include transition(all 0.25s ease-out);
+}
+
+@mixin transition-secondary() {
+	@include transition(all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1));
+}
+
+@mixin button-clear {
+	background-color: transparent;
+    @include appearance(none);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    @include transition-primary;
+}
+
+@mixin input-clear {
+	background-color: transparent;
+    @include appearance(none);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    @include transition-primary;
+}
+
+$header-height-inner: 45px;
+$header-height: 100px;
+$header-module-padding: ($header-height - $header-height-inner) / 2;
+
+$header-mobile-height: 60px;
+
+// Media Queries
+// -----------------------------------------
+
+$screen-xl: "only screen and (max-width: 1500px)";
+$screen-lg: "only screen and (max-width: 1199px)";
+$screen-md: "only screen and (max-width: 991px)";
+$screen-sm: "only screen and (max-width: 767px)";
+$screen-xs: "only screen and (max-width: 575px)";
+
+// Arrays
+// -----------------------------------------
+
+$socialBrands:
+	"facebook", $color-facebook,
+	"twitter", $color-twitter,
+	"google", $color-google,
+	"behance", $color-behance,
+	"dribbble", $color-dribbble,
+	"flickr", $color-flickr,
+	"instagram", $color-instagram,
+	"linkedin", $color-linkedin,
+	"pinterest", $color-pinterest,
+	"skype", $color-skype,
+	"slack", $color-slack,
+	"tumblr", $color-tumblr,
+	"vimeo", $color-vimeo,
+	"vine", $color-vine,
+	"youtube", $color-youtube;
+
+$colorVersions:
+	"primary", $color-primary,
+	"secondary", $color-secondary,
+	"info", $color-blue,
+	"warning", $color-orange,
+	"danger", $color-red,
+	"success", $color-green,
+	"dark", $color-dark;
+
+

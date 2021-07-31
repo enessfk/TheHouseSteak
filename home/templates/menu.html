@@ -1,0 +1,156 @@
+    {% extends "homebase.html" %}
+    {% load static %}
+    {% load mptt_tags %}
+
+    {% block title %}Menu-{{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+        <link rel="shortcut icon" href="{{ setting.icon.url }}">
+        <style>
+            .dropdownMenu:hover ul{
+                display: block;
+                background-color: #050506;
+                list-style: none;
+                margin:0px -35px 15px -35px;
+                padding:0px 0px 15px 60px;
+            }
+            .subMenu{
+                display: none;
+            }
+        </style>
+
+    {% endblock %}
+
+
+    {% block content %}
+    <!-- Content -->
+    <div id="content">
+
+        <!-- Page Title -->
+        <div class="page-title bg-gray">
+            <form action="/search/" method="POST" class="search">
+                {% csrf_token %}
+                <input type="text" id="query" name="query" placeholder="Search..">
+
+            </form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 push-lg-4" >
+                        <h1 class="mb-2" style="font-weight: bolder">MENU</h1>
+                        <h4 class="text-muted mb-0">Contribute to your happy life with flavour meals!</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <div class="container">
+                <div class="row no-gutters">
+                    <div class="col-md-3">
+                        <!-- Menu Navigation -->
+                        <nav id="menu-navigation" class="stick-to-content" data-local-scroll>
+                            <ul class="nav nav-menu bg-dark dark">
+
+                                {% recursetree category %}
+
+                                    <li class="dropdownMenu"><a href="#{{ node.slug }}"> {{ node.title }} &ensp;
+                                        {% if node.level == 0 and node.rght != 2 %}
+                                            <i class="ti-arrow-down"></i>
+                                         {% endif %}
+                                    </a>
+
+                                        {% if not node.is_leaf_node  %}
+
+                                            <ul class="children subMenu">
+                                                <li><a href="{{ children.slug }}">{{ children }}</a></li>
+                                            </ul>
+
+                                        {% endif %}
+                                    </li>
+                                {% endrecursetree %}
+
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                    <div class="col-md-9">
+                    {% for cat in category %}
+                        <!-- Menu Category -->
+                        <div id="{{ cat.slug }}" class="menu-category">
+                            {% if cat.level == 0 %}
+                            <div class="menu-category-title">
+                                <div class="bg-image">
+                                    {% if cat.image %}
+                                        <img src="{{ cat.image.url }}" alt="">
+                                    {% endif %}
+                                </div>
+                                <h2 class="title">{{ cat.title }}</h2>
+                            </div>
+                            {% else %}
+                                <br>
+                                <h4 id="{{cat.slug}}" style="font-weight: bold;text-align: center">{{ cat.title }}</h4>
+                            {% endif %}
+
+                            <div class="menu-category-content padded">
+                                <div class="row gutters-sm">
+
+                                    {% for rs in products %}
+                                        {% if rs.category_id == cat.id %}
+
+                                            <div class="col-lg-4 col-6">
+                                                <!-- Menu Item -->
+                                                <div class="menu-item menu-grid-item">
+                                                    <a href="/product/{{ rs.id }}/{{ rs.slugTitle }}"><img class="mb-4" src="{{ rs.image.url }}" alt="" style="width: 300px;height: 200px" ></a>
+                                                    <h6 class="mb-0"><a href="/product/{{ rs.id }}/{{ rs.slugTitle }}"> {{ rs.title }} </a></h6>
+                                                    <span class="text-muted text-sm">{{rs.ingredients}}</span>
+                                                    <div class="row align-items-center mt-4">
+                                                        <div class="col-sm-6">
+                                                            <span class="text-md mr-4"><span class="text-muted">from</span> ${{rs.price}}</span>
+                                                        </div>
+                                                        <div class="col-sm-6 text-sm-right mt-2 mt-sm-0">
+                                                            <a href="/order/addtocart/{{ rs.id }}">
+                                                                <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content / End -->
+        <script>
+            $(function() {
+                $("#query").autocomplete({
+                    source: "/search_auto/",
+                    select: function (event, ui) { //item selected
+                        AutoCompleteSelectHandler(event, ui)
+                    },
+                    minLength: 2,
+                });
+            });
+            function AutoCompleteSelectHandler(event, ui)
+            {
+                var selectedObj = ui.item;
+            }
+        </script>
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+
+    {% block modals %}{% include 'modals.html' %}{% endblock %}
+

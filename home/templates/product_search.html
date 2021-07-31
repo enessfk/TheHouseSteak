@@ -1,0 +1,97 @@
+    {% extends "homebase.html" %}
+    {% load static %}
+    {% load mptt_tags %}
+
+    {% block title %}Search-{{ setting.title }}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+        <link rel="shortcut icon" href="{{ setting.icon.url }}">
+        <style>
+            table tr th{
+                text-align: center;
+                padding: 20px 20px 20px 20px;
+            }
+            table tr td{
+                text-align: center;
+                padding:20px 10px 20px 0px;
+            }
+            table tr td img{
+                width: 250px;
+                height: 150px;
+            }
+
+        </style>
+    {% endblock %}
+
+
+    {% block content %}
+        <!-- Page Title -->
+        <div class="page-title bg-dark">
+            <form action="/search/" method="POST" class="search">
+                {% csrf_token %}
+                <input type="text" id="query" name="query" placeholder="Search..">
+            </form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 push-lg-4" >
+                        <h1 class="mb-2" style="font-weight: bolder;color: lightgray">Results</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="container">
+            <div class="section-main-2">
+                    <div class="row">
+
+                        <table cellpadding="3" width="100%">
+                            <tr>
+                                <th> Image </th>
+                                <th> Product Name</th>
+                                <th> Category</th>
+                                <th> Price </th>
+                                <th> </th>
+                            </tr>
+                            {% for rs in products %}
+                                <tr style="border-bottom: 1px solid #ddae71;">
+                                    <td><a href="/product/{{ rs.id }}/{{ rs.slugTitle }}"> <img src="{{ rs.image.url }}" alt=""></a></td>
+                                    <td><h4><a href="/product/{{ rs.id }}/{{ rs.slugTitle }}">{{ rs.title }}</a></h4></td>
+                                    <td><h4><a href="../menu/#{{rs.category.slug}}">{{ rs.category }}</a></h4></td>
+                                    <td><h4>${{ rs.price }}</h4></td>
+                                    <td>
+                                        <a href="/order/addtocart/{{ rs.id }}">
+                                        <button class="btn btn-secondary" style="float: right;margin-top: -15px"> <span>Add to Cart</span></button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+                        </table>
+
+                    </div>
+            </div>
+            </div>
+        </div>
+        <script>
+            $(function() {
+                $("#query").autocomplete({
+                    source: "/search_auto/",
+                    select: function (event, ui) { //item selected
+                        AutoCompleteSelectHandler(event, ui)
+                    },
+                    minLength: 2,
+                });
+            });
+            function AutoCompleteSelectHandler(event, ui)
+            {
+                var selectedObj = ui.item;
+            }
+        </script>
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+

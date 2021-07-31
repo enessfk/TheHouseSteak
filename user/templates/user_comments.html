@@ -1,0 +1,91 @@
+    {% extends "homebase.html" %}
+    {% load static %}
+
+    {% block title %}Comments - {{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+                <style>
+            .info-table{
+                width: 100%;
+            }
+            .info-table tr{
+                padding: 0px 10px 0px 10px;
+                width: 400px;
+            }
+            .info-table tr td{
+                width: 400px;
+            }
+        </style>
+    {% endblock %}
+
+
+    {% block content %}
+        <section class="section bg-white">
+
+            <div class="container" style="height: 800px">
+                <div class="row">
+
+                    {% include "profile_panel.html" %}
+                    <div class="col-md-8 bg-light " style="height: 700px; padding: 50px 30px 30px 30px;margin:0px 10px 20px 35px">
+                        <div class="col-md-12 blockquote-content">
+                            <div style="border-bottom: 2px solid white;width: 60%;color: gray">
+                                <h3><i class="ti ti-comments mr-3 text-primary"></i>Comments</h3>
+                            </div>
+
+                            <div class="col-md-12" style="padding: 30px 10px 15px 10px;max-height: 550px;overflow: auto;">
+                                 <table cellpadding="3" style="width: 100%;">
+                                    <tr>
+                                        <div class="post-comments post-module">
+                                            <div class="content">
+                                                <ul class="comments">
+                                                    {% for foo in comments %}
+                                                    <li>
+                                                        <div class="avatar" style="margin-top: 30px">
+                                                            <a href="/product/{{ foo.product.id }}/{{ foo.product.slugTitle }}">
+                                                                <img src="{{ foo.product.image.url }}" alt="" style="border-radius: 15%">
+                                                            </a>
+                                                        </div>
+                                                        <div class="content">
+                                                            <div class="rate rate-lg mb-1">
+                                                                <i class="fa fa-star {% if foo.rate >= 1 %}active {% endif %}"></i>
+                                                                <i class="fa fa-star {% if foo.rate >= 2 %}active {% endif %}"></i>
+                                                                <i class="fa fa-star {% if foo.rate >= 3 %}active {% endif %}"></i>
+                                                                <i class="fa fa-star {% if foo.rate >= 4 %}active {% endif %}"></i>
+                                                                <i class="fa fa-star {% if foo.rate >= 5 %}active {% endif %}"></i>
+                                                              </div>
+                                                            <span class="details">
+                                                                 <a href="/product/{{ foo.product.id }}/{{ foo.product.slugTitle }}">
+                                                                  <strong> {{ foo.product.title }}</strong> </a> on {{ foo.create_at }}
+                                                                <a href="/user/deletecomment/{{ foo.id }}" style="float: right;border: none;"
+                                                                onclick="return confirm('Comment will delete ! Are you sure')">
+                                                                  <i class="ti ti-close" style="color: #b10709" ></i>
+                                                              </a>
+                                                            </span>
+                                                            <p style="margin-bottom: 0px">{{ foo.subject }}</p>
+                                                            <p>{{ foo.comment }}</p>
+                                                        </div>
+                                                    </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+
+

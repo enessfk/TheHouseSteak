@@ -1,0 +1,49 @@
+    {% extends "homebase.html" %}
+    {% load static %}
+
+    {% block title %}Update Profile-{{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+    {% endblock %}
+
+
+    {% block content %}
+        <section class="section bg-white">
+
+            <div class="container" style="height: 800px">
+                <div class="row">
+
+                    {% include "profile_panel.html" %}
+                    <div class="col-md-8 bg-light " style="height: 700px; overflow: auto; padding: 50px 30px 30px 30px;margin:0px 10px 20px 35px">
+                        <div class="col-md-12 blockquote-content">
+                            <div style="border-bottom: 2px solid white;width: 60%;color: gray">
+                                <h3>Personal Information</h3>
+                            </div>
+
+                            <div class="col-md-12" style="padding: 30px 10px 15px 30px">
+                                 <form method="POST" enctype="multipart/form-data">
+                                     {% csrf_token %}
+                                        <fieldset>
+                                            {{ user_form.as_p }}
+                                            {{ profile_form.as_p }}
+                                        </fieldset>
+                                     <button type="submit" class="btn btn-warning" style="float: right"><span>Update</span></button>
+                                    </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+
+

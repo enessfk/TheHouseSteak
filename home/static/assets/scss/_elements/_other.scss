@@ -1,0 +1,104 @@
+/* 6.12 Other
+----------------------------------------------------------*/
+
+/* Body Overlay */
+
+#body-overlay {   
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    background-color: rgba(#000,0.5);
+    z-index: 899;
+    content: ' ';
+    z-index: 925;
+    display: none;
+} 
+
+/* Separator */
+
+hr {
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+
+    @media #{$screen-sm} {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    &.hr-md {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    &.hr-sm {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.dark hr {
+    border-color: $color-line-light;
+}
+
+/* Shapes */
+
+.shape {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+
+    &.circle {
+        @include border-radius(50%);
+    }
+
+    &.square {
+        @include border-radius(5px);
+    }
+}
+
+/* Close */
+
+.close {
+    color: inherit;
+    text-shadow: none;
+    @include opacity(0.6);
+    font-size: 14px;
+    @include transition-primary;
+
+    &:hover, &:focus, &:active, &:focus:active {
+        outline: none;
+        color: inherit;
+        @include opacity(1);
+    }
+}
+.dark .close {
+    color: #fff;
+}
+
+/* Stick to content */
+
+.stick-to-content {
+    @media #{$screen-md} {
+        position: relative !important;
+        top: 0 !important;
+    }
+}
+
+/* Images */
+
+.img-thumbnail, .rounded {
+    @include border-radius(0.75rem);
+}
+
+/* Actions link */
+
+.action-icon {
+    color: $color-muted;
+    margin: 0 0.1em;
+
+    &:hover, &:focus {
+        color: $color-global;
+    }
+}

@@ -1,0 +1,208 @@
+    {% extends "homebase.html" %}
+    {% load static %}
+    {% block title %}{{product.title}} - {{ setting.title }}{% endblock %}
+    {% block keywords%}{{ product.keywords }}{% endblock %}
+    {% block description %} {{ product.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+            <style>
+                .rating {
+                  overflow: hidden;
+                  vertical-align: bottom;
+                  display: inline-block;
+                  width: auto;
+                  height: 30px;
+                }
+
+                .rating > input {
+                  opacity: 0;
+                }
+
+                .rating > label {
+                  position: relative;
+                  display: block;
+                  float: right;
+                  background: url('{% static '/assets/img/star-off-big.png' %}');
+                  background-size: 30px 30px;
+                }
+
+                .rating > label:before {
+                  display: block;
+                  opacity: 0;
+                  content: '';
+                  width: 30px;
+                  height: 30px;
+                  background: url('{% static '/assets/img/star-on-big.png' %}');
+                  background-size: 30px 30px;
+                  transition: opacity 0.2s linear;
+                }
+
+                .rating > label:hover:before,  .rating > label:hover ~ label:before,  .rating:not(:hover) > :checked ~ label:before { opacity: 1; }
+
+            </style>
+
+    {% endblock %}
+
+
+    {% block content %}
+
+        <!-- Page Title -->
+        <div class="page-title bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 push-lg-4">
+                        <h1 class="mb-0">{{product.title}}</h1>
+                        <h4 class="text-muted mb-0">{{product.description}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="section section-main section-main-2 bg-light" style="padding: 0px 50px 50px 50px">
+            <div id="section-main-2-slider" class="section-slider inner-controls" style="width: 50%;float: left">
+                <div id="gallery" class="section section-gallery cover">
+                    <!-- Gallery Carousel -->
+                    <div class="gallery-carousel inner-controls" style="height: 500px">
+                            <div class="slide">
+                                <div class="bg-image bg-parallax"><img src="{{product.image.url}}" alt="" style="width: 100%;height: 500px"></div>
+                            </div>
+                        {% for rs in images %}
+                            <div class="slide">
+                                <div class="bg-image bg-parallax"><img src="{{rs.image.url}}" alt="" style="width: 100%;height: 500px"></div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <!-- Gallery Carousel Nav -->
+                    <div class="gallery-nav" style="background-color: transparent;">
+                            <img src="{{product.image.url}}" alt="" style="width: 40px;height: 70px">
+                        {% for rs in images %}
+                            <img src="{{rs.image.url}}" alt="" style="width: 40px;height: 70px">
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-main-2-slider" class="section-slider inner-controls bg-light" style="width: 50%;float: left;
+                                                                   padding: 0px 25px 50px 70px;">
+                <div class="rate rate-lg mb-1">
+                    <i class="fa fa-star {% if stars.rate__avg > 0.5 or stars.rate__avg == None %}active {% endif %}"></i>
+                    <i class="fa fa-star {% if stars.rate__avg > 1.5 or stars.rate__avg == None %}active {% endif %}"></i>
+                    <i class="fa fa-star {% if stars.rate__avg > 2.5 or stars.rate__avg == None %}active {% endif %}"></i>
+                    <i class="fa fa-star {% if stars.rate__avg > 3.5 or stars.rate__avg == None %}active {% endif %}"></i>
+                    <i class="fa fa-star {% if stars.rate__avg > 4.5 or stars.rate__avg == None %}active {% endif %}"></i>
+                </div>
+                <br>
+                <div class="bg-light h-25">
+                    <h4 style="height: 5px"><b> Ingredients:</b></h4>
+                    <p><b> {{ product.ingredients }} </b></p>
+                </div>
+                <br>
+                <form action="/order/addtocart/{{ product.id }}" method="post">
+                    {% csrf_token %}
+                    <div class="bg-light h-25" style="margin-bottom: -30px">
+                        <h4 style="height: 20px;vertical-align: center;float: left;display: inline-block !important;"><b>Quantity: &ensp;</b></h4>
+                        <input type="number" name="quantity" class="form-control" min="1" placeholder="1" value="1"
+                           style="font-weight: bolder;width: 80px;height: 10px;float: left;vertical-align: center">
+                        <h4 style="float: left">&emsp; ${{ product.price }}</h4>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="float: right;">
+                        <span>Add to Cart</span></button>
+                </form>
+
+                    <br><br> <br> <br><br><br>
+                <!-- Nav Pills -->
+                    <ul class="nav nav-pills nav-fill mb-3" role="tablist">
+                        <li class="nav-item"><a class="nav-link " style="border: 3px solid #f0ad4e" href="#home" aria-controls="home" role="tab" data-toggle="tab">Comments</a></li>
+                        <li class="nav-item"><a class="nav-link" style="border: 3px solid #f0ad4e" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Details</a></li>
+                    </ul>
+            </div>
+        </div>
+         <div class="section-main-2 bg-light" style="padding: 0px 100px 20px 100px;">
+                    <!-- Tab Panes -->
+                    <div class="tab-content" >
+                        <div role="tabpanel" class="tab-pane fade" id="home">
+                            <div class="post-comments post-module">
+                                <h4><i class="ti ti-comments mr-3 text-primary"></i>Comments</h4>
+                                <div class="content" style="margin-left: 100px; max-height: 300px;overflow: auto;">
+                                    <ul class="comments">
+                                        {% for rs in comments %}
+                                        <li>
+                                            <div class="avatar"><img src="{% static 'assets/img/avatars/avatar01.jpg '%}" alt=""></div>
+                                            <div class="content">
+                                                <span class="details">{{ rs.user.username }} on {{ rs.create_at }}  <a href="#" class="text-primary">Reply</a></span>
+                                                <p style="margin-bottom: 0px">{{ rs.subject }}</p>
+                                                <p>{{ rs.comment }}</p>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="post-add-comment post-module">
+                                <h4><i class="ti ti-pencil mr-3 text-primary"></i>Write a comment</h4>
+                                {% if messages  %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }}" role="alert">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="content">
+                                    <form action="/product/addcomment/{{ product.id }}" method="POST" class="validate-form">
+                                        {% csrf_token %}
+                                        <div class="row gutters-sm">
+                                            <div class="col-md-6 form-group">
+                                                <input type="text" class="form-control" name="subject" id="id_subject" placeholder="Subject" required>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <div class="rate rate-lg mb-lg-2" style="padding-left: 30px; text-align: center">
+                                                    <strong style="vertical-align: center;margin-right: -50px">Your Rate:</strong>
+                                                    <span class="rating">
+                                                          <input id="star5" type="radio" name="rate" value="5">
+                                                          <label for="star5">5</label>
+                                                          <input id="star4" type="radio" name="rate" value="4">
+                                                          <label for="star4">4</label>
+                                                          <input id="star3" type="radio" name="rate" value="3" checked>
+                                                          <label for="star3">3</label>
+                                                          <input id="star2" type="radio" name="rate" value="2">
+                                                          <label for="star2">2</label>
+                                                          <input id="star1" type="radio" name="rate" value="1">
+                                                          <label for="star1">1</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea id="id_comment" cols="30" rows="4" class="form-control" name="comment" placeholder="Your Review" required></textarea>
+                                        </div>
+                                        <div class="text-center">
+                                            {% if user.id is not None %}
+                                            <button class="btn btn-primary"><span>Send a comment</span></button>
+                                            {% else %}
+                                                Please <a href="/login" class="text-primary">Login</a> to send a comment.
+                                            {% endif %}
+                                        </div>
+                                    </form>
+                                    <br><br><br>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div role="tabpanel" class="tab-pane fade" id="profile">
+                            {{ product.detail | safe }}
+                        </div>
+                    </div>
+            </div>
+
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+
+
+

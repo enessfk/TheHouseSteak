@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{% block description %}Description!{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}Keywords!{% endblock %}">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href=" {% static 'assets/img/favicon_60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href=" {% static 'assets/img/favicon_72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href=" {% static 'assets/img/favicon_120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href=" {% static 'assets/img/favicon_152x152.png' %}">
+
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href=" {% static 'assets/plugins/bootstrap/dist/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href=" {% static 'assets/plugins/slick-carousel/slick/slick.css' %}" />
+    <link rel="stylesheet" href=" {% static 'assets/plugins/animate.css/animate.min.css' %}" />
+    <link rel="stylesheet" href=" {% static 'assets/plugins/animsition/dist/css/animsition.min.css' %}" />
+
+    <!-- CSS Icons -->
+    <link rel="stylesheet" href=" {% static 'assets/css/themify-icons.css' %}" />
+    <link rel="stylesheet" href=" {% static 'assets/plugins/font-awesome/css/font-awesome.min.css' %}" />
+
+    <!-- CSS Theme -->
+    <link id="theme" rel="stylesheet" href=" {% static 'assets/css/themes/theme-beige.min.css' %}" />
+
+    <!-- jQuery !-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+    <!-- jQuery UI !-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/black-tie/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <style>
+        .search input[type=text] {
+            width: 30px;
+            height: 45px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            float: right;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('{% static '/assets/img/searchicon.png'%}');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 20px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+        .search input[type=text]:focus {
+            width: 300px;
+            padding: 12px 20px 12px 40px;
+        }
+    </style>
+
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %} {% endblock %}
+</head>
+
+<body>
+    <!-- Body Wrapper -->
+    <div id="body-wrapper" class="animsition">
+
+            {% include 'header.html' %}
+
+        <div id="content">
+
+            {% block slider %} {% endblock %}
+            {% block content %} {% endblock %}
+            {% include 'footer.html' %}
+
+        </div>
+            {% include 'scripts.html' %}
+    </div>
+</body>
+</html>

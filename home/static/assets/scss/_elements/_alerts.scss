@@ -1,0 +1,31 @@
+/* 6.1 Alerts
+----------------------------------------------------------*/
+
+.alert {
+	border: none;
+	font-weight: 300;
+	padding: 1rem 1.5rem;
+	@include border-radius(0);
+}
+
+$k: 1;
+@for $i from 1 through length($colorVersions)/2 {
+	$type: nth($colorVersions,$k);
+	$color: nth($colorVersions,$k+1);
+
+	&.alert-#{$type} {
+		background-color: tint($color,90%);
+
+		.close {
+			background-color: #fff;
+			color: $color;
+			@include box-shadow(1px 1px 20px 0 rgba(#000,0.07));
+
+			&:hover, &:focus {
+				background-color: $color;
+				color: #fff;
+			}
+		}
+	}
+	$k: $k+2;
+}

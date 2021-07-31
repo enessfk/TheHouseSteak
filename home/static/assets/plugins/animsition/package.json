@@ -1,0 +1,106 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "animsition",
+        "scope": null,
+        "escapedName": "animsition",
+        "name": "animsition",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/piotrosmola/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/Templates/Soup/assets/plugins"
+    ]
+  ],
+  "_from": "animsition@latest",
+  "_id": "animsition@4.0.2",
+  "_inCache": true,
+  "_location": "/animsition",
+  "_nodeVersion": "5.11.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/animsition-4.0.2.tgz_1461684578124_0.26215901249088347"
+  },
+  "_npmUser": {
+    "name": "blivesta",
+    "email": "enmt@blivesta.com"
+  },
+  "_npmVersion": "3.8.6",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "animsition",
+    "scope": null,
+    "escapedName": "animsition",
+    "name": "animsition",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/animsition/-/animsition-4.0.2.tgz",
+  "_shasum": "d8c6e60b0a5635e3281b962402ca2a5b16b6714e",
+  "_shrinkwrap": null,
+  "_spec": "animsition",
+  "_where": "/Users/piotrosmola/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/Templates/Soup/assets/plugins",
+  "author": {
+    "name": "blivesta",
+    "email": "design@blivesta.com",
+    "url": "http://blivesta.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/blivesta/animsition/issues"
+  },
+  "dependencies": {},
+  "description": "A simple and easy jQuery plugin for CSS animated page transitions.",
+  "devDependencies": {
+    "autoprefixer": "^6.0.3",
+    "browser-sync": "^2.9.12",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-cssnano": "^2.0.0",
+    "gulp-header": "^1.7.1",
+    "gulp-jshint": "^1.11.2",
+    "gulp-postcss": "^6.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
+    "jshint-stylish": "^2.0.1",
+    "postcss-import": "^7.0.0",
+    "run-sequence": "^1.1.2"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "d8c6e60b0a5635e3281b962402ca2a5b16b6714e",
+    "tarball": "https://registry.npmjs.org/animsition/-/animsition-4.0.2.tgz"
+  },
+  "gitHead": "058fa71ba37cc94b451064017b3709d5f0c31219",
+  "homepage": "http://blivesta.github.io/animsition",
+  "keywords": [
+    "css3",
+    "js",
+    "animation",
+    "page transition",
+    "jQuery"
+  ],
+  "license": "MIT",
+  "main": "./dist/js/animsition.js",
+  "maintainers": [
+    {
+      "name": "blivesta",
+      "email": "enmt@blivesta.com"
+    }
+  ],
+  "name": "animsition",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "url": "git+https://github.com/blivesta/animsition.git",
+    "type": "git"
+  },
+  "scripts": {
+    "setup": "npm i && gulp build"
+  },
+  "version": "4.0.2"
+}

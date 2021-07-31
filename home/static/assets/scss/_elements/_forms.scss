@@ -1,0 +1,186 @@
+/* 6.6 Forms
+----------------------------------------------------------*/
+
+/* Form Group */
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
+
+/* Input Group */
+
+.input-group {
+    .btn {
+        &:hover, &:focus, &:active, &:focus:active {
+            @include translateY(0);
+        }
+    }
+}
+
+.input-group-btn:not(:first-child)>.btn, .input-group-btn:not(:first-child)>.btn-group {
+    margin-left: -2px;
+}
+
+/* Form Control */
+
+.form-control {
+    @include appearance(none);
+    border-color: $color-line;
+    font-weight: 300;
+    padding: 1rem;
+    border: 2px solid $color-line;
+    @include box-shadow(inset 1px 1px 2px 0 rgba($color-dark,0.06));
+    @include border-radius(0);
+
+    &:focus {
+        border-color: $color-primary;
+        @include box-shadow(inset 1px 1px 2px 0 rgba($color-primary,0.1));
+    }
+    &.error {
+        border-color: tint($color-red,70%);
+        background-color: tint($color-red,98%);
+    }
+
+    @include input-placeholder {
+        color: inherit;
+        @include opacity(0.5);
+    }
+}
+
+.form-control-sm {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    @include border-radius(0);
+}
+
+.form-control-lg {
+    padding: 1.75rem;
+    font-size: 1.2rem;
+    @include border-radius(0);
+}
+
+
+.dark .form-control {
+	border-color: #fff;
+}
+
+/* Select */
+
+.select-container {
+    position: relative;
+
+    &:after {
+        position: absolute;
+        top: 50%;
+        display: block;
+        @include translate3d(0,-50%,0);
+        right: 13px;
+        font-size: 0.8rem;
+        color: $color-global;
+        font-family: themify;
+        content:"\e62a";
+    }
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: calc(3.25rem + 4px)
+}
+
+/* Label */
+
+label {
+    font-weight: 400;
+}
+
+/* Custom Controls */
+
+.custom-control {
+    min-height: 1.5em;
+    padding-left: 1.9em;
+    margin-right: 1em;
+}
+
+/* Radio - Custom */
+
+.custom-radio {
+
+    .custom-control-input {
+        & + .custom-control-indicator {
+            top: 0.1em;
+            font-weight: 400;
+            font-family: $font-secondary;
+            width: 1.3em;
+            height: 1.3em;
+            margin-right: 0.5rem;
+            @include border-radius(50%);
+            border: 2px solid $color-line;
+            background-color: #fff;
+
+            > svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+
+                > path {
+                    stroke: $color-primary;
+                    @include transition-primary;
+                }
+            }
+        }
+
+        &:checked + .custom-control-indicator {
+            > svg > path {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        &:focus + .custom-control-indicator {
+            @include box-shadow(none);
+            border-color: shade($color-line, 10%);
+        }
+    }
+}
+
+/* Checkbox - Custom */
+
+.custom-checkbox {
+
+    .custom-control-input {
+        & + .custom-control-indicator {
+            top: 0.1em;
+            font-weight: 400;
+            font-family: $font-secondary;
+            width: 1.3em;
+            height: 1.3em;
+            margin-right: 0.5rem;
+            @include border-radius(0);
+            border: 2px solid $color-line;
+            background-color: #fff;
+
+            > svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+
+                > path {
+                    stroke: $color-primary;
+                    @include transition-primary;
+                }
+            }
+        }
+
+        &:checked + .custom-control-indicator {
+            > svg > path {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        &:focus + .custom-control-indicator {
+            @include box-shadow(none);
+        }
+    }
+}

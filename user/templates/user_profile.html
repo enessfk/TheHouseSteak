@@ -1,0 +1,77 @@
+    {% extends "homebase.html" %}
+    {% load static %}
+
+    {% block title %}{{ user.first_name }} {{ user.last_name }}-{{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+        <style>
+            .info-table{
+                width: 100%;
+            }
+            .info-table tr{
+                padding: 10px 10px 10px 10px;
+                width: 400px;
+            }
+            .info-table tr td{
+                width: 400px;
+            }
+        </style>
+    {% endblock %}
+
+
+    {% block content %}
+        <section class="section bg-white">
+
+            <div class="container" style="height: 800px">
+                <div class="row">
+
+                    {% include "profile_panel.html" %}
+                    <div class="col-md-8 bg-light " style="height: auto;padding: 50px 30px 30px 30px;margin:0px 10px 20px 35px">
+                        <div class="col-md-12 blockquote-content">
+                            <div style="border-bottom: 2px solid white;width: 60%;color: gray">
+                                <h3>Personal Information</h3>
+                            </div>
+                            {% for foo in profiles %}
+
+                            <div class="col-md-12" style="padding: 30px 10px 15px 30px">
+                                <table class="info-table">
+                                    <tr>
+                                        <td><p class="lead text-muted mb-5"><b> Name: </b> {{ foo.user.first_name }}</p></td>
+                                        <td><p class="lead text-muted mb-5"><b> Surname: </b> {{ foo.user.last_name }}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="lead text-muted mb-5"><b> Email: </b> {{ foo.user.email }}</p></td>
+                                        <td><p class="lead text-muted mb-5"><b> Phone: </b> {{ foo.phone }}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="lead text-muted mb-5"><b> City: </b> {{ foo.city }}</p></td>
+                                        <td><p class="lead text-muted mb-5"><b> Country: </b> {{ foo.country }}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="lead text-muted mb-5"><b> Address: </b> {{ foo.address }}</p></td>
+                                    </tr>
+                                </table>
+                                <a href="/user/password">
+                                    <button type="button" class="btn btn-warning" style="float: right"><span>Change Password</span></button>
+                                </a>
+                                <a href="/user/update">
+                                    <button type="button" class="btn btn-success" style="float: right"><span>Update Profile</span></button>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+

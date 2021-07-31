@@ -1,0 +1,259 @@
+    {% extends "homebase.html" %}
+    {% load static %}
+    {% block title %}Checkout-{{setting.title}} - {{ setting.description }}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+    {% endblock %}
+
+
+    {% block content %}
+    <div id="content">
+
+        <!-- Page Title -->
+        <div class="page-title bg-dark dark">
+            <!-- BG Image -->
+            <div class="bg-image bg-parallax"><img src="assets/img/photos/bg-croissant.jpg" alt=""></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 push-lg-4">
+                        <h1 class="mb-0">Checkout</h1>
+                        <h4 class="text-muted mb-0">Some informations about our restaurant</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section -->
+        <section class="section bg-light">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 push-xl-8 col-lg-5 push-lg-7">
+                        <div class="shadow bg-white stick-to-content mb-4">
+                            <div class="bg-dark dark p-4"><h5 class="mb-0">You order</h5></div>
+                            <table class="table-cart">
+                                {% for rs in shopcart %}
+                                    <tr>
+                                        <td class="title">
+                                            <span class="name"><a href="#productModal" data-toggle="modal">{{rs.product}}</a></span>
+                                            <span class="caption text-muted">{{rs.product.ingredients}}</span>
+                                        </td>
+                                            <td class="price">${{rs.amount|floatformat:'2'}} <p> x {{ rs.quantity }}</p></td>
+                                        <td class="actions">
+                                            <a href="#productModal" data-toggle="modal" class="action-icon" style="margin-left: -20px"><i class="ti ti-pencil"></i></a>
+                                            <a href="/order/deletefromcart/{{ rs.id }}" class="action-icon"><i class="ti ti-close"></i></a>
+                                        </td>
+                                    </tr>
+                                  {% endfor %}
+                            </table>
+                            <div class="cart-summary">
+                                <div class="row">
+                                    <div class="col-7 text-right text-muted">Order total:</div>
+                                    <div class="col-5"><strong>$  {{ ordertotal }} </strong></div>
+                                </div>
+                                <div class="row">
+                                    {% if delivery == 0 %}
+                                         <div class="col-7 text-right text-muted">Delivery:</div>
+                                         <div class="col-5"><strong>${{delivery}}</strong><br> Free for $50 and above</div>
+                                   {% else %}
+                                    <div class="col-7 text-right text-muted">Delivery:</div>
+                                    <div class="col-5"><strong>${{delivery}}</strong></div>
+                                     {% endif %}
+                                </div>
+                                <hr class="hr-sm">
+                                <div class="row text-md">
+                                    <div class="col-7 text-right text-muted">Total:</div>
+                                    <div class="col-5"><strong>{{total}}</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 pull-xl-4 col-lg-7 pull-lg-5">
+                        <div class="bg-white p-4 p-md-5 mb-4">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                            <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Basic informations</h4>
+                            <div class="row mb-5">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="id_first_name">Name:</label>
+                                    <input type="text" name="first_name" id="id_first_name" value="{{ user.first_name }}" class="form-control" maxlength="20" required>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="id_last_name">Surname:</label>
+                                    <input type="text" name="last_name" id="id_last_name" value="{{ user.last_name }}" class="form-control" maxlength="20" required>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="id_phone">Phone number:</label>
+                                    <input type="text" name="phone" id="id_phone" value="{{ profile.phone }}" maxlength="20"  class="form-control" required>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="id_email">E-mail address:</label>
+                                    <input type="email" name="email" id="id_email" value="{{ user.email }}" maxlength="50" class="form-control" required>
+                                </div>
+                                 <div class="form-group col-sm-6">
+                                     <label for="id_tableno">Table No:</label>
+                                    <div class="select-container">
+                                        <select type="text" name="tableno" id="id_tableno" class="form-control" required>
+                                            {% for foo in tableno %}
+                                                <option>A{{ foo }}</option>
+                                            {% endfor %}
+                                            {% for foo in tableno %}
+                                                <option>B{{foo}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <h4 class="border-bottom pb-4"><i class="ti ti-package mr-3 text-primary"></i>Delivery</h4>
+                            <div class="row mb-5">
+                                <div class="form-group col-sm-6">
+                                    <label for="id_deliverytime">Delivery time:</label>
+                                    <div class="select-container">
+                                        <select type="text" name="deliverytime" id="id_deliverytime" class="form-control">
+                                            <option selected value="in 30 minutes">as fast as possible</option>
+                                            <option>in half hour</option>
+                                            <option>in one hours</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 class="border-bottom pb-4"><i class="ti ti-wallet mr-3 text-primary"></i>Payment</h4>
+                            <div class="row text-lg">
+                                <div class="col-md-4 col-sm-6 form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="payment_type" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">PayPal</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-4 col-sm-6 form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="payment_type" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Credit Card</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-4 col-sm-6 form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="payment_type" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Cash</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg"><span>Order now!</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+        </form>
+            <!-- Panel Cart -->
+    <div id="panel-cart">
+        <div class="panel-cart-container">
+            <div class="panel-cart-title">
+                <h5 class="title">Your Cart</h5>
+                <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
+            </div>
+            <div class="panel-cart-content">
+                <table class="table-cart">
+                    <tr>
+                        <td class="title">
+                            <span class="name"><a href="#productModal" data-toggle="modal">Pizza Chicked BBQ</a></span>
+                            <span class="caption text-muted">26”, deep-pan, thin-crust</span>
+                        </td>
+                        <td class="price">$9.82</td>
+                        <td class="actions">
+                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <span class="name"><a href="#productModal" data-toggle="modal">Beef Burger</a></span>
+                            <span class="caption text-muted">Large (500g)</span>
+                        </td>
+                        <td class="price">$9.82</td>
+                        <td class="actions">
+                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <span class="name"><a href="#productModal" data-toggle="modal">Extra Burger</a></span>
+                            <span class="caption text-muted">Small (200g)</span>
+                        </td>
+                        <td class="price text-success">$0.00</td>
+                        <td class="actions">
+                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <span class="name">Weekend 20% OFF</span>
+                        </td>
+                        <td class="price text-success">-$8.22</td>
+                        <td class="actions"></td>
+                    </tr>
+                </table>
+                <div class="cart-summary">
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">Order total:</div>
+                        <div class="col-5"><strong>$21.02</strong></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">Devliery:</div>
+                        <div class="col-5"><strong>$3.99</strong></div>
+                    </div>
+                    <hr class="hr-sm">
+                    <div class="row text-lg">
+                        <div class="col-7 text-right text-muted">Total:</div>
+                        <div class="col-5"><strong>$24.21</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="checkout.html" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Go to checkout</span></a>
+    </div>
+
+    <!-- Panel Mobile -->
+    <nav id="panel-mobile">
+        <div class="module module-logo bg-dark dark">
+            <a href="#">
+                <img src="assets/img/logo-light.svg" alt="" width="88">
+            </a>
+            <button class="close" data-toggle="panel-mobile"><i class="ti ti-close"></i></button>
+        </div>
+        <nav class="module module-navigation"></nav>
+        <div class="module module-social">
+            <h6 class="text-sm mb-3">Follow Us!</h6>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-google"><i class="fa fa-google"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="fa fa-youtube"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>
+        </div>
+    </nav>
+
+    <!-- Body Overlay -->
+    <div id="body-overlay"></div>
+
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+
+

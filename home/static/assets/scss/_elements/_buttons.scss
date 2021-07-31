@@ -1,0 +1,449 @@
+/* 6.4 Buttons
+----------------------------------------------------------*/
+
+.btn {
+    position: relative;
+    font-family: $font-secondary;
+    font-weight: 400;
+    text-transform: uppercase;
+    @include border-radius(0);
+    padding: 0.75rem 2rem 1rem;
+    @include transition-primary;
+    outline: none;
+    background: transparent;
+    border-width: 2px;
+    @include backface-visibility(hidden);
+    cursor: pointer;
+
+    @media #{$screen-xs} {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    &:before {
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        bottom: -2px;
+        right: -2px;
+        @include transform-origin(center, bottom);
+        @include transition-primary;
+        content: ' ';
+        visibility: hidden;
+        @include scaleY(0);
+    }
+
+    &:hover, &:focus, &:active, &:focus:active {
+        outline: none;
+        @include translateY(-2px);
+        @include box-shadow(none);
+
+        &:before {
+            visibility: visible;
+            @include scaleY(1);
+        }
+    }
+
+    > span {
+        position: relative;
+        z-index: 2;
+    }
+
+    i {
+        position: relative;
+        top: 1px;
+
+        > i {
+            display: inline-block;
+            @include transition(transform 0.2s ease-out, opacity 0.2s ease-out);
+        }
+    }
+
+    img {
+        height: 1em;
+        position: relative;
+        top: -0.05em;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+/* Sizes */
+
+.btn-lg {
+    padding: 1.5rem 3rem 1.75rem;
+    font-size: 1.2rem;
+    @include border-radius(0);
+
+    @media #{$screen-xs} {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+.btn-sm {
+    padding: 0.75rem 1.2rem;
+    font-size: 0.9rem;
+    @include border-radius(0);
+}
+
+/* Types */
+
+$k: 1;
+@for $i from 1 through length($colorVersions)/2 {
+    $type: nth($colorVersions,$k);
+    $color: nth($colorVersions,$k+1);
+
+    &.btn-#{$type} {
+        border-color: $color;
+        background-color: $color;
+        color: #fff;
+
+        &:before {
+            background-color: shade($color, 10%);
+        }
+
+        &:hover, &:focus, &:active, &:focus:active {
+            border-color: $color;
+            background-color: $color;
+            color: #fff;
+        }
+    }
+    $k: $k+2;
+}
+
+.btn-secondary:before {
+    background-color: $color-primary;
+}
+
+.btn-link {
+    color: inherit;
+
+     &:hover, &:focus, &:active, &:focus:active {
+        color: $color-primary;
+        text-decoration: none;
+    }
+}
+
+$k: 1;
+@for $i from 1 through length($colorVersions)/2 {
+    $type: nth($colorVersions,$k);
+    $color: nth($colorVersions,$k+1);
+
+    &.btn-outline-#{$type} {
+        border-color: $color;
+        color: inherit;
+
+        &:before {
+            background-color: $color;
+        }
+
+        &:hover, &:focus, &:active, &:focus:active {
+            border-color: $color;
+            background: transparent;
+            color: #fff;
+        }
+    }
+    $k: $k+2;
+}
+
+.btn-outline-white {
+    border-color: #fff;
+    color: inherit;
+
+    &:hover, &:focus, &:active, &:focus:active {
+        border-color: #fff;
+        background: #fff;
+        color: $color-primary;
+    }
+}
+
+.btn-group {
+    > .btn:first-child:not(:last-child) {
+        @include border-bottom-right-radius(0);
+        @include border-top-right-radius(0);
+    }
+    > .btn:last-child:not(:first-child) {
+        @include border-bottom-left-radius(0);
+        @include border-top-left-radius(0);
+    }
+    > .btn:not(.btn-link):not(:first-child) {
+        border-left: 1px solid rgba(#fff,0.2);
+    }
+    > .btn-secondary:not(:first-child) {
+        border-left-color: $color-line-light !important;
+    }
+    > .btn-dark:not(:first-child) {
+        border-left-color: $color-line-light !important;
+    }
+
+    .btn-outline-primary + .price {
+        background-color: $color-primary;
+        color: #fff;
+    }
+
+    .btn {
+        &:hover, &:focus {
+            @include translateY(0);
+        }
+    }
+
+    .price {
+        font-family: $font-secondary;
+        font-weight: 400;
+        text-transform: uppercase;
+        padding: 0.75rem 1rem 1rem;
+        @include transition-primary;
+
+        &.price-lg {
+            padding: 1.5rem 1rem 1.75rem;
+            font-size: 1.2rem;
+        }
+    }
+}
+
+/* Submit Button */
+
+.btn-submit {
+
+    .description {
+        @include transition-primary;
+    }
+
+    .success, .error {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        visibility: hidden;
+        @include transition-primary;
+    }
+
+    svg {
+        position: relative;
+        top: -0.5rem;
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+
+    &.loading {
+        -webkit-pointer-events: none;
+        pointer-events: none;
+    }
+
+    &.success, &.error {
+        .description {
+            visibility: hidden;
+            @include opacity(0);   
+        }
+    }
+
+    &.success {
+        .success {
+            @include opacity(1);
+            visibility: visible;
+
+            > svg > path {
+                stroke-dashoffset: 0;
+                @include transition(all 0.3s ease-out 0.25s);
+            }
+        }
+    }
+
+    &.error {
+        background-color: $color-medium;
+        border-color: $color-medium;
+
+        .error {
+            @include opacity(1);
+            visibility: visible;
+        }
+    }
+}
+
+@include keyframes(btnLoading) {
+    0% { @include scale(1); }
+    12% { @include scale(0.7); }
+    38% { @include scale(1.1); }
+    62% { @include scale(0.8); }
+    87% { @include scale(1); }
+}
+
+/* Play Button */
+
+.btn-play {
+    @include button-clear;
+    position: relative;
+    display: inline-block;
+    font-size: 52px;
+    width: 92px;
+    height: 92px;
+    vertical-align: middle;
+    border: 2px solid #fff;
+    @include border-radius(50%);
+
+    &:before {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        bottom: -1px;
+        right: -1px;
+        @include border-radius(50%);
+        background-color: #fff;
+        @include transition-primary;
+        @include opacity(0);
+        visibility: hidden;
+        content: ' ';
+    }
+
+    &:after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include translate3d(-50%,-50%,0);
+        @include filter(blur(0));
+        border-style: solid;
+        border-width: 8px 0 8px 14px;
+        border-color: transparent transparent transparent #ffffff;
+        content: ' ';
+        @include transition-primary;
+    }
+
+    &:hover, &:focus, &:active, &:focus:active {
+        outline: none;
+
+        &:before {
+            @include opacity(1);
+            visibility: visible;
+        }
+        &:after {
+            border-color: transparent transparent transparent $color-global;
+        }
+    }
+}
+
+/* Play Button #2 */
+
+.btn-play-2 {
+    @include button-clear;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 600;
+
+    > span {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border: 2px solid $color-primary;
+        @include border-radius(50%);
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 1rem;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            @include border-radius(50%);
+            background-color: $color-primary;
+            @include transition-primary;
+            @include scale(0.9);
+            @include opacity(0);
+            visibility: hidden;
+            content: ' ';
+        }
+
+        &:after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include translate3d(-50%,-50%,0);
+            @include filter(blur(0));
+            border-style: solid;
+            border-width: 6px 0 6px 10px;
+            border-color: transparent transparent transparent $color-primary;
+            content: ' ';
+            @include transition-primary;
+        }
+    }
+
+    &:hover, &:focus, &:active, &:focus:active {
+        outline: none;
+        color: inherit;
+
+        > span {
+            &:before {
+                @include scale(1.2);
+                @include opacity(1);
+                visibility: visible;
+            }
+            &:after {
+                border-color: transparent transparent transparent #fff;
+            }
+        }
+    }
+}
+
+/* Download Button */
+
+.btn-download {
+    @include button-clear;
+    position: relative;
+    font-weight: 300;
+    @include border-radius(40px);
+    color: #fff;
+    padding: 1rem 2rem;
+    @include transition-primary;
+    display: inline-block;
+    outline: none;
+    @include backface-visibility(hidden);
+    font-family: $font-secondary;
+    background-color: $color-dark;
+    min-width: 220px;
+    margin-bottom: 0.2rem;
+    text-align: left;
+
+    @media #{$screen-xs} {
+        min-width: 180px;
+    }
+
+    > .i {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 1rem;
+
+        i {
+            font-size: 1.5rem;
+        }
+
+        img {
+            height: 1.4rem;
+        }
+    }
+
+    > .content {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1.1;
+
+        > span {
+            &:first-child {
+                font-size: 0.9rem;
+                @include opacity(0.5);
+                display: block;
+            }
+            &:last-child {
+                font-size: 1.25rem;
+            }
+        }
+    }
+
+    &:hover, &:focus, &:active, &:focus:active {
+        outline: none;
+        color: #fff;
+        @include translateY(2px);
+    }
+}

@@ -1,0 +1,161 @@
+{% load static %}
+<!-- Section - About -->
+        <style>
+            .section-extended.left>.container:after {left: -75px;background-color: #D9D9D9}
+            .dark .text-muted {color: black !important;}
+        </style>
+        <!-- Section - Steps -->
+        <section class="section section-extended left dark" style="color: black">
+
+            <div class="container bg-dark w-100">
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center">
+                        <!-- Step -->
+                        <div class="feature feature-1 mb-md-0">
+                            <div class="feature-icon icon icon-primary"><i class="ti ti-shopping-cart"></i></div>
+                            <div class="feature-content">
+                                <h4 class="mb-2">Pick a dish</h4>
+                                <p class="text-muted mb-0">Choose your meal from menu and add to cart them!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-center">
+                        <!-- Step -->
+                        <div class="feature feature-1 mb-md-0">
+                            <div class="feature-icon icon icon-primary"><i class="ti ti-wallet"></i></div>
+                            <div class="feature-content">
+                                <h4 class="mb-2">Make a payment</h4>
+                                <p class="text-muted mb-0">Make a payment securely!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-center">
+                        <!-- Step -->
+                        <div class="feature feature-1 mb-md-0">
+                            <div class="feature-icon icon icon-primary"><i class="ti ti-package"></i></div>
+                            <div class="feature-content">
+                                <h4 class="mb-2">Recieve your food!</h4>
+                                <p class="text-muted mb-3">Your meal will be ready to eat on your table!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Section - Offers -->
+        <section class="section bg-light">
+
+            <div class="container">
+                <h1 class="text-center mb-6">Special offers</h1>
+                <div class="carousel" data-slick='{"dots": true}'>
+
+                    {% for rs in specialOffersFastFood %}
+                        <!-- Fast Food Special Offer -->
+                        <div class="special-offer">
+                            <a href="/product/{{ rs.id }}/{{ rs.slugTitle }}">
+                            <img src="{{rs.image.url}}" alt="" style="width: 550px;height: 388px" class="special-offer-image">
+                            </a>
+                            <div class="special-offer-content" style="height: 340px">
+                                <a href="/product/{{ rs.id }}/{{ rs.slugTitle }}">
+                                <h2 class="mb-2">{{rs.title}}</h2>
+                                </a>
+                                <h5 class="text-muted mb-5">Get free from orders higher that $40!</h5>
+                                <ul class="list-check text-lg mb-0">
+                                    <li>Only on Tuesdays</li>
+                                    <li class="false">Order higher that $40</li>
+                                    <li>Unless one burger or pizza ordered</li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% for rs in specialOffersChicken %}
+                        <!-- Special Offer -->
+                        <div class="special-offer">
+                        <a href="/product/{{ rs.id }}/{{ rs.slugTitle }}">
+                            <img src="{{ rs.image.url }}" alt="" style="width: 550px;height: 388px" class="special-offer-image">
+                        </a>
+                            <div class="special-offer-content" style="height: 340px">
+                                <a href="/product/{{ rs.id }}/{{ rs.slugTitle }}">
+                                <h2 class="mb-2">Free {{rs.title}}</h2>
+                                </a>
+                                <h5 class="text-muted mb-5">Get free Chicken to enjoy your Main meal!</h5>
+                                <ul class="list-check text-lg mb-0">
+                                    <li>Only on Weekends</li>
+                                    <li class="false">Order higher that $50</li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% for rs in specialOffersDessert %}
+                        <!-- Special Offer -->
+                        <div class="special-offer">
+                        <a href="/product/{{ rs.id }}/{{ rs.slugTitle }}">
+                            <img src="{{ rs.image.url }}" alt="" style="width: 550px;height: 388px" class="special-offer-image">
+                        </a>
+                            <div class="special-offer-content" style="height: 340px">
+                                <a href="/product/{{ rs.id }}/{{ rs.slugTitle }}">
+                                <h2 class="mb-2">Free {{rs.title}}</h2>
+                                </a>
+                                <h5 class="text-muted mb-5">Get free after your dinner!</h5>
+                                <ul class="list-check text-lg mb-0">
+                                    <li>Only on Tuesdays</li>
+                                    <li>Order higher that $60</li>
+                                    <li class="false">Included dessert</li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section - Menu -->
+        <section class="section pb-0">
+
+            <div class="container">
+                <h1 class="mb-5">Our menu</h1>
+            </div>
+
+            <div class="menu-sample-carousel carousel inner-controls" data-slick='{
+                "dots": true,
+                "slidesToShow": 3,
+                "slidesToScroll": 1,
+                "infinite": true,
+                "responsive": [
+                    {
+                        "breakpoint": 991,
+                        "settings": {
+                            "slidesToShow": 2,
+                            "slidesToScroll": 1
+                        }
+                    },
+                    {
+                        "breakpoint": 690,
+                        "settings": {
+                            "slidesToShow": 1,
+                            "slidesToScroll": 1
+                        }
+                    }
+                ]
+            }'>
+                {% for cat in category %}
+                    {% if cat.level == 0 %}
+                    <!-- Menu Sample -->
+                    <div class="menu-sample">
+                        <a href="menu#{{cat.slug}}">
+                            <img src="{{ cat.image.url }}" alt="" class="image" style="height: 375.89px;width: 430px">
+                            <h3 class="title">{{cat.title}}</h3>
+                        </a>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+            <br> <br>
+
+        </section>

@@ -1,0 +1,35 @@
+    {% extends "homebase.html" %}
+    {% load static %}
+
+    {% block title %}Checkout-{{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+    {% endblock %}
+
+
+    {% block content %}
+
+         <div id="content">
+            <!-- Section -->
+            <section class="section bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 push-lg-4">
+                            <span class="icon icon-xl icon-success"><i class="ti ti-check-box"></i></span>
+                            <h1 class="mb-2">Thank you for your order!</h1>
+                            <h4 class="text-muted mb-5">You will recieve it {{deliverytime}}.</h4>
+                            <h4 class="text-muted mb-5">Your order code : {{ ordercode }}</h4>
+                            <a href="/" class="btn btn-outline-secondary"><span>Go back home</span></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+         </div>
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+
+

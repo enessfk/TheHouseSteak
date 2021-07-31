@@ -1,0 +1,20 @@
+{
+  "name": "Soup",
+  "description": "Plugins",
+  "version": "1.0.0",
+  "devDependencies": {},
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "bootstrap": "^4.0.0-alpha.6",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.1.1",
+    "jquery-validation": "^1.16.0",
+    "jquery.appear": "^1.0.1",
+    "jquery.localscroll": "^1.4.0",
+    "jquery.mb.ytplayer": "^3.0.2",
+    "masonry-layout": "^4.1.1",
+    "skrollr": "^0.6.26",
+    "slick-carousel": "^1.6.0",
+    "twitter-fetcher": "^16.0.2"
+  }
+}

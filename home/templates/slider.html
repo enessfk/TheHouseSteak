@@ -1,0 +1,22 @@
+{% load static %}
+<!-- Section - Main -->
+
+    <section class="section section-main section-main-2 bg-dark dark">
+
+            <div id="section-main-2-slider" class="section-slider inner-controls">
+                {% for rs in sliderdata %}
+                <!-- Slide -->
+                <div class="slide">
+                    <div class="bg-image zooming"><img src="{{rs.image.url}}" alt=""></div>
+                    <div class="container v-center">
+                        <h1 class="display-2 mb-2">{{ rs.title }}</h1>
+                        <h4 class="text-muted mb-5">{{ rs.description }}</h4>
+                        <a href="/product/{{ rs.id }}/{{rs.slugTitle}}"
+                           class="btn btn-outline-primary btn-lg"><span>Order Now!</span></a>
+                    </div>
+                </div>
+                <!-- Slide -->
+                {% endfor %}
+            </div>
+
+        </section>

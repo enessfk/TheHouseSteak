@@ -1,0 +1,83 @@
+    {% extends "homebase.html" %}
+
+    {% load static %}
+
+    {% block title %}Sign Up-{{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+    {% endblock %}
+
+
+    {% block content %}
+            <!-- Content -->
+    <div id="content">
+
+        <!-- Page Title -->
+        <div class="page-title bg-light light">
+            <!-- BG Image -->
+            <div class="bg-image bg-parallax"><img src="assets/img/photos/bg-croissant.jpg" alt=""></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 push-lg-4">
+                        <h1 class="mb-0">Sign Up</h1>
+                        <h4 class="text-muted mb-0">Some informations about our restaurant</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="section bg-light" style="margin-top:-70px">
+
+            <div class="container">
+                <div class="row ">
+
+                    <div class="col-xl-8" style="margin:auto">
+                        <div class="bg-white p-4 p-md-5 mb-4">
+                            <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Sign Up Form</h4>
+                            <div class="row mb-5">
+                                 {% if messages  %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }}" role="alert">
+                                                {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                 {% endif %}
+                                <form action="" method="post" class="col-md-12">
+                                    {% csrf_token %}
+                                    {% for field in form %}
+                                        <div class="form-group col-sm-7" style="margin: auto">
+                                            {{ field.label_tag }}<br>
+
+                                                {{ field }}
+                                        {% if field.help_text %}
+                                            <div class="bg-light" style="padding: 10px 0px 10px 10px; margin: 5px 0px 5px 0px">
+                                                <small style="color: darkolivegreen" >{{ field.help_text }}</small>
+                                            </div>
+                                        {% endif %}
+                                        {% for error in field.errors %}
+                                            <p style="color: red"> {{ error }} </p>
+                                        {% endfor %}
+                                        </div>
+                                    {% endfor %}
+                                    <br><br>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg"><span>Sign Up</span></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+
+

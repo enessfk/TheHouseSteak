@@ -1,0 +1,104 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "skrollr@^0.6.26",
+        "scope": null,
+        "escapedName": "skrollr",
+        "name": "skrollr",
+        "rawSpec": "^0.6.26",
+        "spec": ">=0.6.26 <0.7.0",
+        "type": "range"
+      },
+      "/Users/piotrosmola/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/Templates/Soup/assets/plugins"
+    ]
+  ],
+  "_from": "skrollr@>=0.6.26 <0.7.0",
+  "_id": "skrollr@0.6.26",
+  "_inCache": true,
+  "_location": "/skrollr",
+  "_npmUser": {
+    "name": "jden",
+    "email": "jason@denizac.org"
+  },
+  "_npmVersion": "1.4.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "skrollr@^0.6.26",
+    "scope": null,
+    "escapedName": "skrollr",
+    "name": "skrollr",
+    "rawSpec": "^0.6.26",
+    "spec": ">=0.6.26 <0.7.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/skrollr/-/skrollr-0.6.26.tgz",
+  "_shasum": "65d1aafcc69fc6d27e6cff0f086c25b31b20ab18",
+  "_shrinkwrap": null,
+  "_spec": "skrollr@^0.6.26",
+  "_where": "/Users/piotrosmola/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/Templates/Soup/assets/plugins",
+  "author": {
+    "name": "Alexander Prinzhorn",
+    "email": "alexander@prinzhorn.it",
+    "url": "http://www.prinzhorn.it/"
+  },
+  "bugs": {
+    "url": "https://github.com/Prinzhorn/skrollr/issues"
+  },
+  "dependencies": {},
+  "description": "Stand-alone parallax scrolling library with zero dependencies.",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.7",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-contrib-qunit": "~0.2.0",
+    "grunt-contrib-uglify": "~0.2.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "65d1aafcc69fc6d27e6cff0f086c25b31b20ab18",
+    "tarball": "https://registry.npmjs.org/skrollr/-/skrollr-0.6.26.tgz"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "homepage": "https://github.com/Prinzhorn/skrollr",
+  "keywords": [],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/Prinzhorn/skrollr/blob/master/LICENSE.txt"
+    }
+  ],
+  "main": "dist/skrollr.min.js",
+  "maintainers": [
+    {
+      "name": "jden",
+      "email": "jason@denizac.org"
+    }
+  ],
+  "name": "skrollr",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Prinzhorn/skrollr.git"
+  },
+  "scripts": {
+    "test": "grunt travis --verbose"
+  },
+  "title": "skrollr",
+  "version": "0.6.26",
+  "warnings": [
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "node": "0.10.x"
+      },
+      "pkgid": "skrollr@0.6.26"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "jquery.mb.ytplayer@^3.0.2",
+        "scope": null,
+        "escapedName": "jquery.mb.ytplayer",
+        "name": "jquery.mb.ytplayer",
+        "rawSpec": "^3.0.2",
+        "spec": ">=3.0.2 <4.0.0",
+        "type": "range"
+      },
+      "/Users/piotrosmola/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/Templates/Soup/assets/plugins"
+    ]
+  ],
+  "_from": "jquery.mb.ytplayer@>=3.0.2 <4.0.0",
+  "_id": "jquery.mb.ytplayer@3.0.2",
+  "_inCache": true,
+  "_location": "/jquery.mb.ytplayer",
+  "_nodeVersion": "5.7.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/jquery.mb.ytplayer-3.0.2.tgz_1465229719501_0.9457232018467039"
+  },
+  "_npmUser": {
+    "name": "pupunzi",
+    "email": "matbicoc@gmail.com"
+  },
+  "_npmVersion": "3.6.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "jquery.mb.ytplayer@^3.0.2",
+    "scope": null,
+    "escapedName": "jquery.mb.ytplayer",
+    "name": "jquery.mb.ytplayer",
+    "rawSpec": "^3.0.2",
+    "spec": ">=3.0.2 <4.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/jquery.mb.ytplayer/-/jquery.mb.ytplayer-3.0.2.tgz",
+  "_shasum": "b35afd3302815f29031749225e700fac84268630",
+  "_shrinkwrap": null,
+  "_spec": "jquery.mb.ytplayer@^3.0.2",
+  "_where": "/Users/piotrosmola/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/Templates/Soup/assets/plugins",
+  "author": {
+    "name": "Pupunzi",
+    "email": "matteo@open-lab.com",
+    "url": "Matteo Bicocchi"
+  },
+  "bugs": {
+    "url": "https://github.com/pupunzi/jquery.mb.YTPlayer/issues"
+  },
+  "buildnum": "5763",
+  "demo": "http://pupunzi.com/#mb.components/mb.YTPlayer/YTPlayer.html",
+  "dependencies": {
+    "jquery": ">=1.8"
+  },
+  "description": "This plugin let you play any public YouTube video as background of your page. It can also be used as a customized player in page.",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-build-number": "^1.0.0",
+    "grunt-bump": "^0.3.1",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.3",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-include-replace": "^3.0.0",
+    "grunt-jsbeautifier": "^0.2.10"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "dist": {
+    "shasum": "b35afd3302815f29031749225e700fac84268630",
+    "tarball": "https://registry.npmjs.org/jquery.mb.ytplayer/-/jquery.mb.ytplayer-3.0.2.tgz"
+  },
+  "docs": "https://github.com/pupunzi/jquery.mb.YTPlayer/wiki",
+  "download": "http://pupunzi.open-lab.com/mb-jquery-components/jquery-mb-ytplayer/",
+  "gitHead": "2f0338c870e61e4ab6299f366445b16ed15df436",
+  "homepage": "http://pupunzi.open-lab.com/mb-jquery-components/jquery-mb-ytplayer/",
+  "keywords": [
+    "jquery-plugin",
+    "video",
+    "Youtube",
+    "background",
+    "HTML5",
+    "player",
+    "custom"
+  ],
+  "license": "MIT",
+  "main": "dist/jquery.mb.YTPlayer.js",
+  "maintainers": [
+    {
+      "name": "pupunzi",
+      "email": "matbicoc@gmail.com"
+    }
+  ],
+  "name": "jquery.mb.ytplayer",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pupunzi/jquery.mb.YTPlayer.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "title": "jquery.mb.YTPlayer",
+  "version": "3.0.2"
+}

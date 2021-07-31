@@ -1,0 +1,105 @@
+    {% extends "homebase.html" %}
+    {% load static %}
+
+    {% block title %}Order Detail- {{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+                <style>
+            .info-table{
+                width: 100%;
+            }
+            .info-table tr{
+                padding: 0px 10px 0px 10px;
+                width: 400px;
+            }
+            .info-table tr td{
+                width: 400px;
+            }
+        </style>
+    {% endblock %}
+
+
+    {% block content %}
+        <section class="section bg-white">
+
+            <div class="container" style="height: 800px">
+                <div class="row">
+
+                    {% include "profile_panel.html" %}
+                    <div class="col-md-8 bg-light " style="height: 700px; overflow: auto; padding: 50px 30px 30px 30px;margin:0px 10px 20px 35px">
+                        <div class="col-md-12 blockquote-content">
+                            <div style="border-bottom: 2px solid white;width: 60%;color: gray">
+                                <h3>Order Detail</h3>
+                            </div>
+                             <div class="col-md-12" style="padding: 30px 10px 15px 30px">
+                                 <table cellpadding="3" width="100%">
+                                    <tr>
+                                        <td><p class="lead text-muted mb-1"><b> Name: </b> {{ order.first_name }}</p></td>
+                                        <td><p class="lead text-muted mb-1"><b> Surname: </b> {{ order.last_name }}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="lead text-muted mb-1"><b> Phone: </b>  {{ order.phone }}</p></td>
+                                        <td><p class="lead text-muted mb-1"><b> Address: </b> {{ order.address }}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="lead text-muted mb-1"><b> City: </b> {{ order.city }}</p></td>
+                                        <td><p class="lead text-muted mb-1"><b> Country: </b> {{ order.country }}</p></td>
+                                    </tr>
+                                     <tr>
+                                        <td><p class="lead text-muted mb-1"><b> Status: </b> {{ order.status }}</p></td>
+                                        <td><p class="lead text-muted mb-1"><b> Create_at: </b> {{ order.create_at }}</p></td>
+                                    </tr>
+                                     <tr>
+                                        <td><p class="lead text-muted mb-1"><b> Shipment: </b> {{ order.adminnote }}</p></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <p class="lead text-muted mb-1">&emsp;&ensp; <b><strong> Ordered Products </strong></b></p>
+                            <div class="col-md-12" style="padding: 30px 10px 15px 30px">
+                                 <table cellpadding="3">
+                                       <tr>
+                                          <th> </th>
+                                          <th> Product</th>
+                                          <th> Price</th>
+                                          <th> Quantity </th>
+                                          <th> Amount </th>
+                                          <th> Status </th>
+                                          <th> Date </th>
+                                      </tr>
+                                 {% for foo in orderitems %}
+
+                                     <tr>
+                                         <td>
+                                         <a href="/product/{{ foo.product.id }}/{{foo.product.slugTitle}}">
+                                            <img src="{{ foo.product.image.url }}" width="110" height="110" alt="">
+                                         </a>
+                                        </td>
+                                        <td><p class="lead text-muted mb-5"> {{ foo.product.title }}</p></td>
+                                        <td><p class="lead text-muted mb-5"> $ {{ foo.price }}</p></td>
+                                        <td><p class="lead text-muted mb-5"> {{ foo.quantity }}</p></td>
+                                        <td><p class="lead text-muted mb-5"> {{ foo.amount }}</p></td>
+                                        <td><p class="lead text-muted mb-5"> {{ foo.status }}</p></td>
+                                        <td><p class="lead text-muted mb-5"> {{ foo.create_at|date:"M m, H:s" }}</p></td>
+                                    </tr>
+
+                                 {% endfor %}
+                                </table>
+                            </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+
+

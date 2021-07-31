@@ -1,0 +1,17 @@
+    {% extends "homebase.html" %}
+
+    {% block title %}{{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+    {% endblock %}
+
+
+    {% block slider %} {% include 'slider.html' %} {% endblock %}
+
+    {% block content %} {% include 'content.html' %} {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+

@@ -1,0 +1,75 @@
+    {% extends "homebase.html" %}
+    {% load static %}
+
+    {% block title %}Orders-{{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+                <style>
+            .info-table{
+                width: 100%;
+            }
+            .info-table tr{
+                padding: 0px 10px 0px 10px;
+                width: 400px;
+            }
+            .info-table tr td{
+                width: 400px;
+            }
+        </style>
+    {% endblock %}
+
+
+    {% block content %}
+        <section class="section bg-white">
+
+            <div class="container" style="height: 800px">
+                <div class="row">
+
+                    {% include "profile_panel.html" %}
+                    <div class="col-md-8 bg-light " style="height: 700px; overflow: auto; padding: 50px 30px 30px 30px;margin:0px 10px 20px 35px">
+                        <div class="col-md-12 blockquote-content">
+                            <div style="border-bottom: 2px solid white;width: 60%;color: gray">
+                                <h3>Orders</h3>
+                            </div>
+
+                            <div class="col-md-12" style="padding: 30px 10px 15px 10px">
+                                 <table cellpadding="3" style="width: 100%">
+                                      <tr>
+                                          <th> Name </th>
+                                          <th> Surname</th>
+                                          <th> Total</th>
+                                          <th> Status </th>
+                                          <th style="text-align: center"> Date </th>
+                                      </tr>
+                                    {% for foo in orders %}
+                                    <tr>
+                                        <td><p class="lead text-muted mb-5">{{ foo.first_name }}</p></td>
+                                        <td><p class="lead text-muted mb-5"> {{ foo.last_name }}</p></td>
+                                        <td><p class="lead text-muted mb-5"> $ {{ foo.total }}</p></td>
+                                        <td><p class="lead text-muted mb-5"> {{ foo.status }}</p></td>
+                                        <td><p class="lead text-muted mb-5">{{ foo.create_at|date:"D d, M Y"}}</p></td>
+                                        <td><a href="/user/orderdetail/{{ foo.id }}">
+                                             <button type="button" class="btn btn-warning" style="margin-bottom: 35px  "><span>Details</span></button>
+                                             </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </table>
+                            </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+
+

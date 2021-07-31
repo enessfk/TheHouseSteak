@@ -1,0 +1,54 @@
+    {% extends "homebase.html" %}
+
+    {% load static %}
+
+    {% block title %}References-{{setting.title}}{% endblock %}
+    {% block keywords%}{{ setting.keywords }}{% endblock %}
+    {% block description %} {{ setting.description }} {% endblock %}
+
+    {% block head %}
+            <link rel="shortcut icon" href="{{ setting.icon.url }}">
+    {% endblock %}
+
+
+    {% block content %}
+        <div id="content">
+
+        <!-- Page Title -->
+        <div class="page-title border-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 push-lg-5">
+                        <h1 class="mb-0">References</h1>
+                        <h4 class="text-muted mb-0">Some informations about our restaurant</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section -->
+        <section class="section section-bg-edge">
+
+            <div class="image align-top col-md-12">
+                <div class="bg-image"><img src="{% static 'assets/img/photos/bg-aboutus.png'%}" alt=""></div>
+            </div>
+
+            <div class="container" style="color: white">
+                <div class="col-lg-5 push-lg-5 col-md-9 push-md-3">
+                    <h2 >The best food in London!</h2>
+                    <p class="lead"></p>
+                    <p> {{   setting.references|safe }} </p>
+                    <img src="{% static 'assets/img/svg/sign.svg'%}" alt="" class="mb-5">
+                    <h4>What people say about Us?</h4>
+                    <a href="page-reviews.html" class="btn btn-outline-primary"><span>Check our reviews</span></a>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    {% endblock %}
+
+    {% block scripts %} {% include 'scripts.html' %} {% endblock %}
+

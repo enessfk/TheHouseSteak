@@ -1,0 +1,96 @@
+/* 6.14 Cart
+----------------------------------------------------------*/
+
+#panel-cart {
+	position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    width: 370px;
+    z-index: 950;
+    @include box-shadow(0 0 30px 0 rgba(#000,0.1));
+    font-size: 0.95rem;
+    visibility: hidden;
+    @include translateX(100%);
+    @include transition-secondary;
+
+    @media #{$screen-xs} {
+        width: 100%;
+    }
+
+    &.show {
+        visibility: visible;
+        @include translateX(0);
+    }
+
+    .panel-cart-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding-bottom: 90px;
+        overflow: auto;
+        z-index: 2;
+        background-color: #fff;
+    }
+
+    .panel-cart-title {
+        @include display-flex;
+        @include align-items(center);
+        padding: 1.5rem;
+        background-color: $color-light;
+
+        .title {
+            margin-bottom: 0;
+        }
+
+        .close {
+            margin-left: auto;
+        }
+    }
+
+    .panel-cart-action {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        white-space: nowrap;
+        z-index: 3;
+
+        &:hover, &:focus {
+            @include translateY(0);
+        }
+    }
+}
+
+.cart-summary {
+    padding: 1.5rem;
+}
+
+.table-cart {
+    line-height: 1.25;
+    width: 100%;
+
+    th, td {
+        vertical-align: middle;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid $color-line;
+    }
+
+    .title {
+        .name {
+            font-weight: 500;
+            display: block;
+        }
+    }
+
+    .price {
+        font-weight: 500;
+    }
+
+    .actions {
+        white-space: nowrap;
+    }
+}

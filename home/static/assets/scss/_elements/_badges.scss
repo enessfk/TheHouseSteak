@@ -1,0 +1,21 @@
+/* 6.3 Badges
+----------------------------------------------------------*/
+
+.badge {
+    border: none;
+    padding: 0.5rem 1rem;
+    @include border-radius(2rem);
+    font-weight: 600;
+    font-size: 70%;
+}
+
+$k: 1;
+@for $i from 1 through length($colorVersions)/2 {
+    $type: nth($colorVersions,$k);
+    $color: nth($colorVersions,$k+1);
+
+    &.badge-#{$type} {
+        background-color: $color;
+    }
+    $k: $k+2;
+}

@@ -1,0 +1,186 @@
+/* 4.3 Menu
+----------------------------------------------------------*/
+
+/* Menu Sample */
+
+.menu-sample {
+    position: relative;
+    background-color: $color-dark;
+    overflow: hidden;
+
+    .image {
+        @include transition(all 1.5s ease-out);
+    }
+
+    .title {
+        position: absolute;
+        bottom: 4.5rem;
+        right: 4.5rem;
+        color: #fff;
+        font-size: 5.5rem;
+        font-weight: 100;
+        margin-bottom: 0;
+
+        @media #{$screen-md} {
+            font-size: 4rem;
+        }
+    }
+
+    &:hover {
+        .image {
+            @include scale(1.05);
+        }
+    }
+}
+
+.menu-sample-carousel {
+    margin-bottom: 0;
+
+    .menu-sample {
+        &:nth-child(2n+1) {
+            top: 10px;
+        }
+    }
+
+    .slick-list {
+        overflow: visible;
+    }
+}
+
+/* Menu Navigation */
+
+.nav-menu {
+    @include flex-direction(column);
+    padding: 1.5rem 2.5rem;
+    font-family: $font-secondary;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+
+    li {
+        a {
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            display: block;
+        }
+    }
+}
+
+/* Menu Category */
+
+.menu-category {
+    margin-bottom: 2rem;
+
+    .menu-category-title {
+        position: relative;
+        height: 35vh;
+        min-height: 160px;
+        color: #fff;
+        padding: 3rem;
+        background-color: $color-dark;
+
+        @media #{$screen-md} {
+            min-height: 100px;
+        }
+
+        .bg-image:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            content: ' ';
+            background-image: linear-gradient(to top, rgba(#000,0.5), rgba(#000,0));
+        }
+
+        .title {
+            position: absolute;
+            bottom: 3rem;
+            left: 4rem;
+            font-size: 5rem;
+            z-index: 2;
+            margin-bottom: 0;
+
+            @media #{$screen-xl} {
+                font-size: 4.5rem;
+            }
+
+            @media #{$screen-md} {
+                font-size: 4rem;
+                bottom: 2rem;
+                left: 3rem;
+            }
+
+            @media #{$screen-md} {
+                font-size: 3rem;
+                left: 2rem;
+            }
+        }
+
+        &.collapse-toggle {
+            cursor: pointer;
+            height: 25vh;
+            @include transition-primary;
+
+            &:after {
+                position: absolute;
+                bottom: 3rem;
+                right: 3rem;
+                font-family: 'themify';
+                content: "\e64b";
+                display: inline-block;
+                font-size: 3rem;
+                @include opacity(0.5);
+                z-index: 2;
+                @include transition-primary;
+
+                @media #{$screen-xl} {
+                    bottom: 2.5rem;
+                }
+
+                @media #{$screen-md} {
+                    right: 2rem;
+                    bottom: 2rem;
+                    font-size: 2rem;
+                }
+            }
+
+            &[aria-expanded="true"] {
+                height: 35vh;
+                &:after {
+                    @include rotateX(180deg);
+                }
+            }
+        }
+    }
+
+    .menu-category-content {
+        border: 1px solid $color-line;
+        background-color: #fff;
+
+        &.padded {
+            padding: 15px;
+        }
+    }
+}
+
+.menu-list-item {
+    padding: 1.25rem 1.5rem;
+    line-height: 1.2;
+
+    @media #{$screen-xs} {
+        padding: 1rem;
+    }
+
+    &:not(:last-child) {
+        border-bottom: 1px solid $color-line;
+    }
+}
+
+.menu-grid-item {
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid $color-line;
+    }
+}

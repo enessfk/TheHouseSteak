@@ -1,0 +1,138 @@
+/* 3.2 Navigation Desktop
+----------------------------------------------------------*/
+
+.nav-main {
+    font-family: $font-secondary;
+    text-transform: uppercase;
+
+    > li {
+        position: relative;
+
+        &:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+
+        &.has-dropdown {
+            > a {
+                &:after {
+                    font-family: 'themify';
+                    content: "\e62a";
+                    margin-left: 0.5rem;
+                    font-size: 0.75em;
+                    display: inline-block;
+                    vertical-align: middle;
+                    @include opacity(0.5);
+                    @include transition-primary;
+                }
+
+                &:hover, &:focus {
+                    color: inherit;
+
+                    &:after {
+                        @include opacity(1);
+                    }
+                }
+            }
+
+            &.dropdown-show {
+                > a:after {
+                    @include opacity(1);
+                    @include translateY(3px);
+                }
+                > .dropdown-container {
+                    @include translateY(0);
+                    @include opacity(1);
+                    visibility: visible;
+                }
+            }
+        }
+
+        > a {
+            line-height: $header-height-inner;
+
+            &:hover, &:focus {
+                color: $color-primary;
+            }
+        }
+
+        .dropdown-container {
+            top: calc(100% + #{$header-height-inner});
+            left: 0;
+            position: absolute;
+            background-color: #fff;
+            @include display-flex;
+            @include transition-primary;
+            @include translateY(10px);
+            @include opacity(0);
+            visibility: hidden;
+            color: $color-global;
+            text-align: left;
+
+            .dropdown-mega {
+                padding: 0.5rem 1.5rem;
+
+                > li {
+                    > a {
+                        padding: 0.75rem 0;
+                    }
+                }
+            }
+
+            .dropdown-image {
+                width: 250px;
+            }
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding: 5px;
+        margin: 0;
+        line-height: 1.5;
+        width: 200px;
+        background-color: #fff;
+
+        li {
+            position: relative;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid $color-line;
+            }
+
+            a { 
+                display: block;
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            &.has-dropdown:after {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                font-family: 'themify';
+                content: "\e628";
+                font-size: 0.75em;
+                @include opacity(0.5);
+            }
+
+            > ul {
+                position: absolute;
+                top: 0;
+                left: calc(100% + 8px);
+                @include transition-primary;
+                visibility: hidden;
+                @include opacity(0);
+            }
+
+            &.dropdown-show {
+                &.has-dropdown:after {
+                    @include opacity(1);
+                }
+                > ul {
+                    @include opacity(1);
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}

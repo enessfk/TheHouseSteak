@@ -1,0 +1,259 @@
+/* 3.1 Header Mobile
+----------------------------------------------------------*/
+
+#header-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $header-mobile-height;
+    z-index: 900;
+    display: none;
+
+    &.light {
+        background-color: #fff;
+        @include box-shadow(0 0 10px 0 rgba(#000,0.1));
+    }
+
+    &.dark {
+        background-color: $color-dark;
+    }
+
+    @media #{$screen-md} {
+        display: block;
+    }
+
+    .module {
+        line-height: $header-mobile-height;
+    }
+
+    .module-logo {
+        width: calc(100% - 90px);
+        margin: 0 auto;
+        text-align: center;
+
+        img {
+            height: calc(#{$header-mobile-height} - 30px);
+        }
+    }
+
+    .module-nav-toggle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 45px;
+        text-align: center;
+    }
+
+    .module-cart {
+        position: absolute;
+        top: 0;
+        right: 10px;
+
+        i {
+            position: relative;
+            top: 4px;
+            font-size: 1.7rem;
+            display: inline-block;
+            color: $color-medium;
+        }
+
+        .notification {
+            position: absolute;
+            top: 0.8rem;
+            right: 0;
+            background-color: $color-green;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.7rem;
+            display: inline-block;
+            @include border-radius(30px);
+            padding: 0.15rem 0.3rem 0.2rem 0.35rem;
+            line-height: 1;
+        }
+    }
+}
+
+// Navigation Toggle
+
+#nav-toggle {
+    width: 26px;
+    height: 26px;
+    position: relative;
+    @include transform(rotate(0deg));
+    @include transition(0.5s ease-in-out)
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 17px;
+
+    span {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: $color-global;
+        @include opacity(1);
+        left: 0;
+        @include border-radius(2px);
+        @include transform(rotate(0deg));
+        @include transition(0.25s ease-in-out);
+
+        &:nth-child(1) {
+            top: 3px;
+        }
+
+        &:nth-child(2), &:nth-child(3) {
+            top: 11px;
+        }
+
+        &:nth-child(4) {
+            top: 19px;
+        }
+    }
+
+    &.open span {
+        &:nth-child(1) {
+            top: 18px;
+            width: 0%;
+            left: 50%;
+        }
+
+        &:nth-child(2) {
+            @include transform(rotate(45deg));
+        }
+
+        &:nth-child(3) {
+            @include transform(rotate(-45deg));
+        }
+
+        &:nth-child(4) {
+            top: 18px;
+            width: 0%;
+            left: 50%;
+        }
+    }
+}
+
+.dark #nav-toggle span {
+    background: #fff;
+}
+
+/* Panel Mobile */
+
+#panel-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+    width: 300px;
+    z-index: 970;
+    @include box-shadow(0 0 30px 0 rgba(#000,0.1));
+    display: none;
+    visibility: hidden;
+    @include translateX(-100%);
+    @include transition-secondary;
+    overflow: auto;
+
+    @media #{$screen-md} {
+        display: block;
+    }
+
+    @media #{$screen-xs} {
+        width: 100%;
+    }
+
+    &.show {
+        visibility: visible;
+        @include translateX(0);
+    }
+
+    .module-logo {
+        text-align: center;
+        padding: 5rem 2rem;
+        display: block;
+    }
+
+    .module-navigation {
+        padding: 1rem 1.5rem;
+    }
+
+    .module-social {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .close {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        font-size: 1.3rem;
+    }
+}
+
+.nav-main-mobile {
+    font-family: $font-secondary;
+    text-transform: uppercase;
+    @include flex-direction(column);
+
+    li {
+        position: relative;
+
+        &.has-dropdown {
+            &:after {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                font-family: 'themify';
+                content: "\e62a";
+                margin-left: 0.5rem;
+                font-size: 0.75em;
+                display: inline-block;
+                vertical-align: middle;
+                color: $color-muted;
+                @include transition-primary;
+            }
+        }
+    }
+
+    > li {
+        position: relative;
+        border-bottom: 1px solid $color-line;
+
+        > a {
+            padding: 0.75rem 0;
+            display: block;
+        }
+
+        .dropdown-container {
+            display: none;
+
+            .dropdown-image {
+                display: none;
+            }
+        }
+    }
+
+    ul {
+        list-style: none;
+        margin: 0 0.5rem 1rem;
+        padding: 0 1rem;
+        font-size: 0.9rem;
+
+        > li {
+            &.has-dropdown:after {
+                top: 0.35rem;
+                right: 0;
+            }
+            > a {
+                padding: 0.25rem 0;
+                display: block;
+            }
+        }
+
+        ul {
+            padding: 0;
+            display: none;
+        }
+    }
+}
